@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ action }} Expense</h2>
+  <form method="post" class="form">
+    <label>Title
+      <input type="text" name="title" required value="{{ expense.title if expense else '' }}">
+    </label>
+    <label>Amount
+      <input type="number" step="0.01" name="amount" required value="{{ expense.amount if expense else '' }}">
+    </label>
+    <label>Category
+      <input type="text" name="category" value="{{ expense.category if expense else 'Other' }}">
+    </label>
+    <label>Date
+      <input type="date" name="expense_date" required value="{{ expense.expense_date if expense else '' }}">
+    </label>
+    <label>Note
+      <textarea name="note">{{ expense.note if expense else '' }}</textarea>
+    </label>
+
+    <div class="form-actions">
+      <button type="submit" class="btn">{{ action }}</button>
+      <a href="/" class="btn ghost">Cancel</a>
+    </div>
+  </form>
+{% endblock %}
+

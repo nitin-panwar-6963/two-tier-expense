@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql
+    container_name: local
+    ports:
+      - "3306:3306"
+    networks:
+      - flask-app
+    volumes:
+      - db_data:/var/lib/mysql 
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: expense_db
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    restart: always
+
+
+  flask:
+    build:
+      context: .
+    container_name: expense-app
+    ports:
+      - "5000:5000"
+    networks:
+      - flask-app
+    restart: always
+    env_file:
+      - ".env"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+networks:
+  flask-app:
+volumes:
+  db_data:
+

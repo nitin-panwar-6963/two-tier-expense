@@ -1,0 +1,6 @@
+Flask
+SQLAlchemy
+PyMySQL
+cryptography
+python-dotenv
+Flask-SQLAlchemy

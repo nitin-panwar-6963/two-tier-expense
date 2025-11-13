@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="filters">
+    <input type="text" id="search" placeholder="Search by title or category...">
+    <input type="date" id="start_date">
+    <input type="date" id="end_date">
+    <button id="filterBtn">Filter</button>
+  </section>
+
+  <section class="summary">
+    <h2>Total: ₹<span id="total">0.00</span></h2>
+  </section>
+
+  <section class="list">
+    <table id="expensesTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+{% endblock %}
+
