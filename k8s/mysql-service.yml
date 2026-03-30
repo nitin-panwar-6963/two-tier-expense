@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mysql-service
+  namespace: expense
+spec:
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
